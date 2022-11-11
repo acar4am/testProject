@@ -1,14 +1,14 @@
 
-class Test {
+class PassObjectReference {
 
     int i, k;
 
-    Test(int a, int b){
+    PassObjectReference(int a, int b){
         i = a;
         k = b;
 
     }
-    void changeInts(Test ob){
+    void changeInts(PassObjectReference ob){
         ob.i = ob.i + ob.k;
         ob.k = -ob.k;
     }
@@ -18,7 +18,7 @@ class PassObRef {
 
 
 
-        Test ob = new Test(15, 4);
+        PassObjectReference ob = new PassObjectReference(15, 4);
         System.out.println();
         System.out.println("Before changeInts(): " + ob.i + "\s" + ob.k);
 
