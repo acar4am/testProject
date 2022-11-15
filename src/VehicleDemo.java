@@ -10,11 +10,11 @@ public class VehicleDemo {
 
         gallons = minivan.fuelNeeded(dist);
 
-        System.out.println("Minivan can carry " +minivan.passengers+
+        System.out.println("Minivan can carry " +minivan.getPassengers()+
                 " passengers with range of "+minivan.range()+ " Miles.");
         System.out.println("To go " +dist+ " miles minivan needs " +gallons+ " gallons of fuel");
         gallons = sportcar.fuelNeeded(dist);
-        System.out.println("Sportcar can carry " +sportcar.passengers+
+        System.out.println("Sportcar can carry " +sportcar.getPassengers()+
                 " passengers with range of " +sportcar.range()+ " Miles.");
         System.out.println("To go " +dist+ " miles sportcar needs " +gallons+ " gallons of fuel");
 
@@ -23,14 +23,17 @@ public class VehicleDemo {
     }
 }
 class Vehicle{
-    int passengers,//number of passengers
+    private int
+        passengers,//number of passengers
         fuelcap, //fuel capacity in gallons
         mpg;//fuel consumption in miles per gallon
-
-    Vehicle(int p, int f, int m){//constructor for Vehicle
-        passengers = p;
-        fuelcap = f;
-        mpg = m;
+    int getPassengers(){ return passengers; }
+    int getFuelcap() { return fuelcap; }
+    int getMpg() { return mpg; }
+    Vehicle(int passengers, int fuel, int mpg){//constructor for Vehicle
+        this.passengers = passengers;
+        fuelcap = fuel;
+        this.mpg = mpg;
     }
 
     //display the range

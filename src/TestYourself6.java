@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+
 class Stack {
 // first in - last out
    private int pos = 0;
@@ -97,3 +100,11 @@ class VarArgsDemo{
     }
 }
 
+class LocDateTest{
+    public static void main(String[] args) {
+        LocalDate date;
+        date = LocalDate.now();
+        System.out.println(date);
+
+    }
+}
