@@ -1,4 +1,6 @@
-class TwoDObj {
+// Declaring TwoDObj as abstract to implement abstract method area()
+// there can't be any objects of abstract class
+abstract class TwoDObj {
    private double height, width;
    private String name;
 
@@ -39,10 +41,9 @@ class TwoDObj {
     void setHeight(double h) { height = h; }
     void setWidth(double width) { this.width = width; }
     String getName(){ return name; }
-    double area(){
-        System.out.println("Area must be overridden");
-        return 0.0;
-    }
+
+    // Now, area() is abstract method
+    abstract double area();
 }
 
 // Subclass Triangle inherits from superclass TwoDObj
@@ -73,7 +74,7 @@ class Triangle extends TwoDObj{
     }
 
     // override area() for Triangle
-    double area(){
+   double area(){
         return getHeight() * getWidth() / 2;
     }
     void showStyle(){
@@ -115,7 +116,7 @@ class Shapes{
         shapes[1] = new Triangle(7.0);
         shapes[2] = new Rectangle(9.0, 5.0);
         shapes[3] = new Rectangle(10.0, 10.0);
-        shapes[4] = new TwoDObj(10,20,"generic");
+        shapes[4] = new Triangle();
 
         for (int i = 0; i < shapes.length; i++){
             System.out.println("object is " +shapes[i].getName());
@@ -125,3 +126,5 @@ class Shapes{
         }
     }
 }
+
+

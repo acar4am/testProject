@@ -8,6 +8,12 @@ class Err {
     }
 }
 class ErrorInfo {
+
+    final int OUTERR = 0;
+    final int INERR = 1;
+    final int DISKERR = 2;
+    final int INDEXERR = 3;
+
     String[] msgs = {
             "Output Error",
             "Input Error",
@@ -21,6 +27,12 @@ class ErrorInfo {
         else
             return new Err("Invalid Error Code", 0);
     }
+    String getErrMsg(int i){
+        if(i >= 0 && i < msgs.length)
+            return  msgs[i];
+        else
+            return "Invalid error code";
+    }
 }
 class ErrInfo {
     public static void main(String[] args) {
@@ -30,5 +42,10 @@ class ErrInfo {
         System.out.println(e.msg + " severity: " + e.severity);
         e = err.getErrorInfo(19);
         System.out.println(e.msg + " severity: " + e.severity);
+
+        System.out.println(err.getErrMsg(err.INDEXERR));
+        var test = new Object();
+        String str = test.toString();
+        System.out.println(str);
     }
 }
