@@ -27,5 +27,14 @@ class TruckDemo{
         System.out.println("To go " +dist+ " miles " +pickup.getName()+ " needs " +
                             +gallons+ " gallons of fuel");
 
+
+        var semitruck = new Vehicle();
+        semitruck = pickup;
+
+
+
+        // pickup is object of class Truck, that derives from Vehicle
+        // class, so for semitruck it is permissible to be assigned
+        // a reference to Truck object
     }
 }

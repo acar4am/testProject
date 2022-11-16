@@ -30,6 +30,10 @@ class Vehicle{
     int getPassengers(){ return passengers; }
     int getFuelcap() { return fuelcap; }
     int getMpg() { return mpg; }
+
+    Vehicle(){
+
+    }
     Vehicle(int passengers, int fuel, int mpg){//constructor for Vehicle
         this.passengers = passengers;
         fuelcap = fuel;

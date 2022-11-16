@@ -1,22 +1,34 @@
 class TwoDObj {
    private double height, width;
+   private String name;
 
     // constructor without params
     TwoDObj(){
         height = width = 0;
+        name = "none";
     }
+
     // constructor with params
-    TwoDObj(double h, double w){
+    TwoDObj(double h, double w, String n){
         height = h;
         width = w;
+        name = n;
     }
-    // constructor with ob parameter
+
+    // constructor object from an object
     TwoDObj(TwoDObj ob){
         height = ob.height;
         width = ob.width;
+        name = ob.name;
     }
-    void showDim(){
-        System.out.println("Width and height are " +width+ " and " +height);
+
+    // construct object with equal width and height
+    TwoDObj(double i, String n){
+        height = width = i;
+        name = n;
+    }
+    String showDim(){
+        return "Width and height are " +width+ " and " +height;
     }
     double getHeight(){
         return height;
@@ -26,6 +38,11 @@ class TwoDObj {
     }
     void setHeight(double h) { height = h; }
     void setWidth(double width) { this.width = width; }
+    String getName(){ return name; }
+    double area(){
+        System.out.println("Area must be overridden");
+        return 0.0;
+    }
 }
 
 // Subclass Triangle inherits from superclass TwoDObj
@@ -35,20 +52,27 @@ class Triangle extends TwoDObj{
     //constructor without params
     Triangle(){
         super();
-        style = "Empty";
+        style = "none";
     }
     //constructor with params
     Triangle(String s,double h, double w) {
-        super(h, w);
+        super(h, w, "Triangle");
         style = s;
     }
 
     // constructor with ob param
     Triangle(Triangle ob){
         // super inherits from TwoDObj constructor
-        super(ob);
+        super(ob); // pass Triangle reference to TwoDObj's constructor
         style = ob.style;
     }
+    //constructor for object with equal width and height
+    Triangle(double i){
+        super(i, "Triangle");
+        style = "outlined";
+    }
+
+    // override area() for Triangle
     double area(){
         return getHeight() * getWidth() / 2;
     }
@@ -57,29 +81,47 @@ class Triangle extends TwoDObj{
     }
 
 }
+// Subclass for rectangles
+class Rectangle extends TwoDObj {
+    // default constructor
+    Rectangle(){
+        super();
+    }
+
+    //constructor for Rectangle
+    Rectangle(double h, double w) {
+        super(h, w, "Rectangle"); // calls superclass constructor
+    }
+
+    boolean isSquare(){
+        if(getHeight() == getWidth())
+            return true;
+        return false;
+    }
+
+    // override area() for Rectangle
+    double area(){
+        return getHeight() * getWidth();
+    }
+
+}
 class Shapes{
     public static void main(String[] args) {
-        Triangle t1 = new Triangle("Hollow", 7.0, 4.0);
-        var t2 = new Triangle();
-        var t3 = new Triangle(t1);
+        // array of objects
+        // is valid, because superclass reference can refer to subclass objects
+        TwoDObj[] shapes = new TwoDObj[5];
 
-        System.out.println("Triangle t1:");
-        t1.showDim();
-        System.out.println("Area is " +t1.area());
-        t1.showStyle();
+        shapes[0] = new Triangle("filled", 8.0, 3.0);
+        shapes[1] = new Triangle(7.0);
+        shapes[2] = new Rectangle(9.0, 5.0);
+        shapes[3] = new Rectangle(10.0, 10.0);
+        shapes[4] = new TwoDObj(10,20,"generic");
 
-        System.out.println("Triangle t2:");
-        t2.showDim();
-        System.out.println("Area is " +t2.area());
-        t2.showStyle();
-
-        System.out.println("Triangle t3:");
-        t3.showDim();
-        System.out.println("Area is " +t3.area());
-        t3.showStyle();
-
-        t3.setWidth(99);
-        t3.showDim();
-
+        for (int i = 0; i < shapes.length; i++){
+            System.out.println("object is " +shapes[i].getName());
+            System.out.println(shapes[i].showDim());
+            System.out.println("Area is " +shapes[i].area());
+            System.out.println(".");
+        }
     }
 }
